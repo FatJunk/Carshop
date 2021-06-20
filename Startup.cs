@@ -68,6 +68,10 @@ namespace Carshop
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
+                endpoints.MapControllerRoute(
+                    name: "car",
+                    pattern: "{controller=Car}/{action=Index}/{id?}"
+                );
                 endpoints.MapRazorPages();
             });
         }
