@@ -13,13 +13,20 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Carshop.Models;
+using Carshop.Interfaces;
+using Carshop.Mocks;
+using Microsoft.AspNetCore.Http;
+using Carshop.Data.Repository;
 
 namespace Carshop
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration)
+
+        private IConfigurationRoot _confString;
+        public Startup(IConfiguration configuration, IWebHostEnvironment hostEnv)
         {
+            _confString = new ConfigurationBuilder().SetBasePath(hostEnv.ContentRootPath).AddJsonFile("DBSettings.json").Build();
             Configuration = configuration;
         }
 
@@ -31,14 +38,21 @@ namespace Carshop
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlite(
                     Configuration.GetConnectionString("DefaultConnection")));
-            services.AddDbContext<CarDbContext>(options =>
+            services.AddDbContext<CarDbContent>(options =>
                 options.UseSqlite(
-                    Configuration.GetConnectionString("CarConnection")));
+                    _confString.GetConnectionString("DefaultConnection")));
             services.AddDatabaseDeveloperPageExceptionFilter();
 
-            services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+            services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = false)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
+            services.AddTransient<IAllCars, CarRepository>();
+            services.AddTransient<ICarsCategory, CategoryRepository>();
+            services.AddTransient<IAllOrders, OrdersRepository>();
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            services.AddScoped(sp => CarshopCart.GetCart(sp));
             services.AddControllersWithViews();
+            services.AddMemoryCache();
+            services.AddSession();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -60,8 +74,18 @@ namespace Carshop
 
             app.UseRouting();
 
+            app.UseSession();
+
             app.UseAuthentication();
             app.UseAuthorization();
+
+            CarDbContent content;
+            using(var scope = app.ApplicationServices.CreateScope()){
+
+                content = scope.ServiceProvider.GetRequiredService<CarDbContent>();
+                DbObjects.Initial(content);
+
+            }
 
             app.UseEndpoints(endpoints =>
             {
@@ -69,9 +93,8 @@ namespace Carshop
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
                 endpoints.MapControllerRoute(
-                    name: "car",
-                    pattern: "{controller=Car}/{action=Index}/{id?}"
-                );
+                    name: "categoryFilter",
+                    pattern: "Car/{action}/{category?}", defaults: new {Controller = "Car", Action = "List"});
                 endpoints.MapRazorPages();
             });
         }

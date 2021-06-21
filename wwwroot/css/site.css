@@ -1,5 +1,6 @@
 ﻿/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
 for details on configuring this project to bundle and minify static web assets. */
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300&family=Raleway&display=swap');
 
 a.navbar-brand {
   white-space: normal;
@@ -10,6 +11,9 @@ a.navbar-brand {
 /* Provide sufficient contrast against white background */
 a {
   color: #0366d6;
+  font-size: 25px;
+  text-decoration: none;
+  outline: 0;
 }
 
 .btn-primary {
@@ -60,8 +64,31 @@ html {
 
 body {
   /* Margin bottom by footer height */
-  margin-bottom: 60px;
+  margin-bottom: 80px;
+  background-color: #f2f2f2;
+  font-weight: 300;
+  font-size: 16px;
+  color: #555;
+  --webkit-text-size-adjust: 100%;
+  --webkit-font-smoothing: antialiased;
+  --webkit-overflow-scrolling: touch;
 }
+
+h1,h2,h3,h4,h5,h6{
+  font-family: "Raleway";
+  font-weight: 400;
+  color: #333;
+}
+
+p{
+  line-height: 28px;
+  margin-bottom: 25px;
+}
+
+.centered{
+  text-align: center;
+}
+
 .footer {
   position: absolute;
   bottom: 0;
@@ -69,3 +96,4 @@ body {
   white-space: nowrap;
   line-height: 60px; /* Vertically center the text there */
 }
+

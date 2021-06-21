@@ -179,8 +179,8 @@ C:\Carshop\obj\Debug\net5.0\Carshop.dll
 C:\Carshop\obj\Debug\net5.0\ref\Carshop.dll
 C:\Carshop\obj\Debug\net5.0\Carshop.pdb
 C:\Carshop\obj\Debug\net5.0\Carshop.genruntimeconfig.cache
-C:\Carshop\obj\Debug\net5.0\Razor\Views\Car\Create.cshtml.g.cs
-C:\Carshop\obj\Debug\net5.0\Razor\Views\Car\Delete.cshtml.g.cs
-C:\Carshop\obj\Debug\net5.0\Razor\Views\Car\Details.cshtml.g.cs
-C:\Carshop\obj\Debug\net5.0\Razor\Views\Car\Edit.cshtml.g.cs
-C:\Carshop\obj\Debug\net5.0\Razor\Views\Car\Index.cshtml.g.cs
+C:\Carshop\obj\Debug\net5.0\Razor\Views\Cars\List.cshtml.g.cs
+C:\Carshop\bin\Debug\net5.0\DBSettings.json
+C:\Carshop\obj\Debug\net5.0\Razor\Views\CarshopCart\Index.cshtml.g.cs
+C:\Carshop\obj\Debug\net5.0\Razor\Views\Shared\AllCars.cshtml.g.cs
+C:\Carshop\obj\Debug\net5.0\Razor\Views\Order\Checkout.cshtml.g.cs

@@ -1,0 +1,5 @@
+{
+    "ConnectionStrings": {
+        "DefaultConnection": "DataSource=car.db;Cache=Shared"
+    }
+}
