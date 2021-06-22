@@ -19,5 +19,27 @@ namespace Carshop.Controllers{
         public IActionResult Checkout(){
             return View();
         }
+
+        [HttpPost]
+        public IActionResult Checkout(Order order){
+
+            carshopCart.listCarshopItems = carshopCart.GetCarshopCartItems();
+
+            if(carshopCart.listCarshopItems.Count == 0){
+                ModelState.AddModelError("","В корзине должны быть добавленны товары");
+            }
+
+            if(ModelState.IsValid){
+                allOrders.createOrder(order);
+                return RedirectToAction("Complete");
+            }
+
+            return View(order);
+        }
+
+        public IActionResult Complete(){
+            ViewBag.Message = "Заказ успешно обработан";
+            return View();
+        }
     }
 }

@@ -1,40 +1,41 @@
 @model Order
 
-<div class="row">
-    <h3>Оформление заказа</h3>
-    <form asp-action="Checkout" method="POST" class="form-horizontal">
-        <div class="form-group">
-            <label asp-for="name" class="form-control" />
-            <div class="col-md-5">
-                <input asp-for="name" class="form-control" />
+<h3>Оформление заказа</h3>
+<div class="form-row">
+    <br />
+    <form asp-action="Checkout" method="post" class="form-horizontal">
+        <div class="form-group form-row">
+            <label asp-for="name"></label>
+            <div class="col-12">
+                <input asp-for="name" class="form-control"/>
                 <span asp-validation-for="name" class="text-danger"></span>
             </div>
         </div>
-        <div class="form-group">
-            <label asp-for="surrName" class="form-control" />
-            <div class="col-md-5">
-                <input asp-for="surrName" class="form-control" />
+        <div class="form-group form-row">
+            <label asp-for="surrName"></label>
+            <div class="col-12">
+                <input asp-for="surrName" class="form-control"/>
                 <span asp-validation-for="surrName" class="text-danger"></span>
             </div>
         </div>
-        <div class="form-group">
-            <label asp-for="Address" class="form-control" />
-            <div class="col-md-5">
-                <input asp-for="Address" class="form-control" />
+        <div class="form-group form-row">
+            <label asp-for="Address"></label>
+            <div class="col-12">
+                <input asp-for="Address" class="form-control"/>
                 <span asp-validation-for="Address" class="text-danger"></span>
             </div>
         </div>
-        <div class="form-group">
-            <label asp-for="Phone" class="form-control" />
-            <div class="col-md-5">
-                <input asp-for="Phone" class="form-control" />
+        <div class="form-group form-row">
+            <label asp-for="Phone"></label>
+            <div class="col-12">
+                <input asp-for="Phone" class="form-control"/>
                 <span asp-validation-for="Phone" class="text-danger"></span>
             </div>
         </div>
-        <div class="form-group">
-            <label asp-for="Email" class="form-control" />
-            <div class="col-md-5">
-                <input asp-for="Email" class="form-control" />
+        <div class="form-group form-row">
+            <label asp-for="Email"></label>
+            <div class="col-12">
+                <input asp-for="Email" class="form-control" type="email" placeholder="Например name@example.com"/>
                 <span asp-validation-for="Email" class="text-danger"></span>
             </div>
         </div>

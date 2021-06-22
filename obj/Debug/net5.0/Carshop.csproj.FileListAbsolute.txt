@@ -184,3 +184,4 @@ C:\Carshop\bin\Debug\net5.0\DBSettings.json
 C:\Carshop\obj\Debug\net5.0\Razor\Views\CarshopCart\Index.cshtml.g.cs
 C:\Carshop\obj\Debug\net5.0\Razor\Views\Shared\AllCars.cshtml.g.cs
 C:\Carshop\obj\Debug\net5.0\Razor\Views\Order\Checkout.cshtml.g.cs
+C:\Carshop\obj\Debug\net5.0\Razor\Views\Order\Complete.cshtml.g.cs
