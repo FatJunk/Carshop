@@ -12,7 +12,7 @@ namespace Carshop.Models{
         public DbSet<Car> Car {get; set;}
         public DbSet<Category> Category {get; set;}
         public DbSet<CarshopCartItem> CarshopCartItem {get; set;}
-        public DbSet<Order> Order {get; set;}
+        public DbSet<Orderz> Orderz {get; set;}
         public DbSet<OrderDetail> OrderDetail {get; set;}
 
     }

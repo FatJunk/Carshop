@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc.ModelBinding;
 using System.ComponentModel.DataAnnotations;
 
 namespace Carshop.Models{
-    public class Order{
+    public class Orderz{
 
         [BindNever]
         public int id {get; set;}

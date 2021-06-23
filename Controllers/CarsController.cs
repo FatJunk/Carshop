@@ -39,6 +39,16 @@ namespace Carshop.Controllers
                     currCategory = "Седан";
 
                 }
+                else if (string.Equals("minivan", category, StringComparison.OrdinalIgnoreCase)){
+                    cars = _allCars.Cars.Where(i => i.Category.categoryName.Equals("Минивэн"));
+                    currCategory = "Минивэн";
+
+                }
+                else if (string.Equals("cupe", category, StringComparison.OrdinalIgnoreCase)){
+                    cars = _allCars.Cars.Where(i => i.Category.categoryName.Equals("Купе"));
+                    currCategory = "Купе";
+
+                }
 
 
                 

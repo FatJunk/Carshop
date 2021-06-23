@@ -8,6 +8,7 @@ using Carshop.Models;
 namespace Carshop.Data.Repository{
     public class OrdersRepository : IAllOrders
     {
+        private List<Orderz> orderz = new List<Orderz>();
         private readonly CarDbContent carDbContent;
         private readonly CarshopCart carshopCart;
 
@@ -17,22 +18,26 @@ namespace Carshop.Data.Repository{
         }
 
 
-        public void createOrder(Order order)
+        public void createOrder(Orderz order)
         {
+            carDbContent.Orderz.Add(order);
             order.orderTime = DateTime.Now;
-            carDbContent.Order.Add(order);
+            carDbContent.SaveChanges();
 
             var items = carshopCart.listCarshopItems;
 
             foreach(var el in items){
                 var orderDetail = new OrderDetail(){
-                    CarID = el.car.Id,
+                    carId = el.car.Id,
                     orderId = order.id,
                     price = el.car.Price
                 };
                 carDbContent.OrderDetail.Add(orderDetail);
             }
-            carDbContent.SaveChanges();
+            carDbContent.SaveChangesAsync();
         }
+
+        
+
     }
 }

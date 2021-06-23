@@ -21,7 +21,7 @@ namespace Carshop.Controllers{
         }
 
         [HttpPost]
-        public IActionResult Checkout(Order order){
+        public IActionResult Checkout(Orderz order){
 
             carshopCart.listCarshopItems = carshopCart.GetCarshopCartItems();
 

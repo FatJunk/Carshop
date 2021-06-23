@@ -6,6 +6,6 @@ using Carshop.Models;
 
 namespace Carshop.Interfaces{
    public interface IAllOrders{
-        void createOrder(Order order);
+        public void createOrder(Orderz order);
     }
 }

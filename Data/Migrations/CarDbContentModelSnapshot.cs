@@ -86,42 +86,16 @@ namespace Carshop.Data.Migrations
                     b.ToTable("Category");
                 });
 
-            modelBuilder.Entity("Carshop.Models.Order", b =>
-                {
-                    b.Property<int>("id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
-
-                    b.Property<string>("Address")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Email")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Phone")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("name")
-                        .HasColumnType("TEXT");
-
-                    b.Property<DateTime>("orderTime")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("surrName")
-                        .HasColumnType("TEXT");
-
-                    b.HasKey("id");
-
-                    b.ToTable("Order");
-                });
-
             modelBuilder.Entity("Carshop.Models.OrderDetail", b =>
                 {
                     b.Property<int>("id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("CarID")
+                    b.Property<int?>("Orderzid")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("carId")
                         .HasColumnType("INTEGER");
 
                     b.Property<int>("orderId")
@@ -132,11 +106,48 @@ namespace Carshop.Data.Migrations
 
                     b.HasKey("id");
 
-                    b.HasIndex("CarID");
+                    b.HasIndex("Orderzid");
 
-                    b.HasIndex("orderId");
+                    b.HasIndex("carId");
 
                     b.ToTable("OrderDetail");
+                });
+
+            modelBuilder.Entity("Carshop.Models.Orderz", b =>
+                {
+                    b.Property<int>("id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Address")
+                        .IsRequired()
+                        .HasMaxLength(30)
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Email")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Phone")
+                        .IsRequired()
+                        .HasMaxLength(11)
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("name")
+                        .IsRequired()
+                        .HasMaxLength(25)
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime>("orderTime")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("surrName")
+                        .IsRequired()
+                        .HasMaxLength(25)
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("id");
+
+                    b.ToTable("Orderz");
                 });
 
             modelBuilder.Entity("Carshop.Models.Car", b =>
@@ -161,21 +172,19 @@ namespace Carshop.Data.Migrations
 
             modelBuilder.Entity("Carshop.Models.OrderDetail", b =>
                 {
+                    b.HasOne("Carshop.Models.Orderz", "Orderz")
+                        .WithMany("orderDetails")
+                        .HasForeignKey("Orderzid");
+
                     b.HasOne("Carshop.Models.Car", "Car")
                         .WithMany()
-                        .HasForeignKey("CarID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Carshop.Models.Order", "Order")
-                        .WithMany("orderDetails")
-                        .HasForeignKey("orderId")
+                        .HasForeignKey("carId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Car");
 
-                    b.Navigation("Order");
+                    b.Navigation("Orderz");
                 });
 
             modelBuilder.Entity("Carshop.Models.Category", b =>
@@ -183,7 +192,7 @@ namespace Carshop.Data.Migrations
                     b.Navigation("cars");
                 });
 
-            modelBuilder.Entity("Carshop.Models.Order", b =>
+            modelBuilder.Entity("Carshop.Models.Orderz", b =>
                 {
                     b.Navigation("orderDetails");
                 });

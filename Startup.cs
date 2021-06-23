@@ -17,6 +17,7 @@ using Carshop.Interfaces;
 using Carshop.Mocks;
 using Microsoft.AspNetCore.Http;
 using Carshop.Data.Repository;
+using Microsoft.AspNetCore.Authentication.Cookies;
 
 namespace Carshop
 {
@@ -35,16 +36,18 @@ namespace Carshop
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseSqlite(
-                    Configuration.GetConnectionString("DefaultConnection")));
+            //подключение контекста БД
             services.AddDbContext<CarDbContent>(options =>
                 options.UseSqlite(
                     _confString.GetConnectionString("DefaultConnection")));
             services.AddDatabaseDeveloperPageExceptionFilter();
 
-            services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = false)
-                .AddEntityFrameworkStores<ApplicationDbContext>();
+            // services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+            //     .AddCookie(options => {
+            //         options.LoginPath = new Microsoft.AspNetCore.Http.PathString("/Account/Login");
+            //     });
+            
+
             services.AddTransient<IAllCars, CarRepository>();
             services.AddTransient<ICarsCategory, CategoryRepository>();
             services.AddTransient<IAllOrders, OrdersRepository>();
@@ -95,7 +98,7 @@ namespace Carshop
                 endpoints.MapControllerRoute(
                     name: "categoryFilter",
                     pattern: "Car/{action}/{category?}", defaults: new {Controller = "Car", Action = "List"});
-                endpoints.MapRazorPages();
+                
             });
         }
     }

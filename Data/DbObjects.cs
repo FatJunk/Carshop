@@ -39,10 +39,26 @@ namespace Carshop.Data{
                         Price = 55000,
                         isFav = false,
                         Category = Categories["Седан"]
+                    },
+                    new Car {
+                        Name = "Hyundai Staria",
+                        Description = "Полноприводной минивэн",
+                        Pic = "/img/staria-front-550x378.jpg",
+                        Price = 15000,
+                        isFav = true,
+                        Category = Categories["Минивэн"]
+                    },
+                    new Car {
+                        Name = "Porche 911",
+                        Description = "Спорт-купе",
+                        Pic = "/img/porche.jpg",
+                        Price = 55000,
+                        isFav = false,
+                        Category = Categories["Купе"]
                     }
                 );
             }
-            content.SaveChanges();
+            content.SaveChangesAsync();
         }
 
         private static Dictionary<string, Category> category;
@@ -51,7 +67,10 @@ namespace Carshop.Data{
                 if(category == null){
                     var list = new Category[]{
                         new Category{categoryName = "Седан", Desc = "Закрытый кузов с багажником"},
-                        new Category{categoryName = "Универсал", Desc = "Вариант седана с увеличенным багажником"}
+                        new Category{categoryName = "Универсал", Desc = "Вариант седана с увеличенным багажником"},
+                        new Category{categoryName = "Купе", Desc = "Закрытый кузов с двумя дверьми и структурно отдельным багажником"},
+                        new Category{categoryName = "Минивэн", Desc = "Легковой автомобиль с однообъёмным кузовом и бескапотной или полутораобъёмной компоновкой"}
+                        
                     };
 
                     category = new Dictionary<string, Category>();

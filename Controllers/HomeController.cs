@@ -8,9 +8,11 @@ using Microsoft.Extensions.Logging;
 using Carshop.Models;
 using Carshop.Interfaces;
 using Carshop.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Carshop.Controllers
 {
+    [Authorize]
     public class HomeController : Controller
     {
         private  IAllCars _carRep;
@@ -19,7 +21,8 @@ namespace Carshop.Controllers
         public HomeController(IAllCars carRep){
             _carRep = carRep;
         }
-
+        
+        [AllowAnonymous]
         public ViewResult Index(){
             var homeCars = new HomeViewModel{
                 favCars = _carRep.getFavCars
